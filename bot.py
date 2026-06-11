@@ -59,7 +59,7 @@ def init_db():
 
 def categories():
     conn = db(); cur = conn.cursor()
-    cur.execute("SELECT DISTINCT category FROM items ORDER BY category")
+    cur.execute("SELECT DISTINCT category FROM items WHERE category!='📚 Сроки хранения' ORDER BY category"))
     rows = [r[0] for r in cur.fetchall()]
     conn.close(); return rows
 
@@ -88,6 +88,7 @@ def search_items(text):
 def main_menu_kb():
     kb = InlineKeyboardBuilder()
     kb.button(text="☕ Меню напитков", callback_data="categories")
+    kb.button(text="📚 Сроки хранения", callback_data="storage")
     kb.button(text="🔍 Поиск", callback_data="search_help")
     kb.button(text="⭐ Избранное", callback_data="favorites")
     kb.adjust(1)
@@ -132,7 +133,13 @@ def format_item(row):
         f"<b>Описание:</b>\n{description}\n\n"
         f"<b>Время/срок:</b> {serve_time}"
     )
-
+@dp.callback_query(F.data == "storage")
+async def cb_storage(call: CallbackQuery):
+    await call.message.edit_text(
+        "📚 Сроки хранения:",
+        reply_markup=item_list_kb("📚 Сроки хранения")
+    )
+    await call.answer()
 async def main():
     if not BOT_TOKEN:
         raise RuntimeError("Нет BOT_TOKEN. Создайте .env по примеру .env.example")
