@@ -136,7 +136,7 @@ async def main():
     if not BOT_TOKEN:
         raise RuntimeError("Нет BOT_TOKEN. Создайте .env по примеру .env.example")
     init_db()
-    bot = Bot(BOT_TOKEN, parse_mode="HTML")
+    bot = Bot(BOT_TOKEN)
     dp = Dispatcher()
 
     @dp.message(Command("start"))
