@@ -145,15 +145,15 @@ async def main():
 
     @dp.message(Command("start"))
     async def start(message: Message):
-        await message.answer("☕ <b>One Price Coffee</b>\nТвой гид под рукой.\n\nВыберите раздел или напишите название напитка.", reply_markup=main_menu_kb())
+      await message.answer("☕️ One Price Coffee\n\nВаш гид под рукой.\n\nВыберите раздел или напишите название напитка.")
 
     @dp.message(Command("menu"))
     async def menu(message: Message):
-        await message.answer("Выберите категорию:", reply_markup=categories_kb())
+       await message.answer("Выберите категорию:", reply_markup=categories_kb())
 
     @dp.message(Command("search"))
     async def search_cmd(message: Message):
-        await message.answer("Напишите название напитка или ингредиент. Например: <b>сырный латте</b>")
+       await message.answer("Напишите название напитка или ингредиента. Например: сырный латте")
 
     @dp.message(Command("admin"))
     async def admin(message: Message):
