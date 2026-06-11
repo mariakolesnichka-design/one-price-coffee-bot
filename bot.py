@@ -7,6 +7,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.client.default import DefaultBotProperties 
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -136,7 +137,10 @@ async def main():
     if not BOT_TOKEN:
         raise RuntimeError("Нет BOT_TOKEN. Создайте .env по примеру .env.example")
     init_db()
-    bot = Bot(BOT_TOKEN)
+    bot = Bot(
+    BOT_TOKEN,
+    default=DefaultBotProperties(parse_mode="HTML")
+)
     dp = Dispatcher()
 
     @dp.message(Command("start"))
