@@ -59,7 +59,7 @@ def init_db():
 
 def categories():
     conn = db(); cur = conn.cursor()
-    cur.execute("SELECT DISTINCT category FROM items WHERE category!='📚 Сроки хранения' ORDER BY category"))
+)
     rows = [r[0] for r in cur.fetchall()]
     conn.close(); return rows
 
@@ -88,7 +88,6 @@ def search_items(text):
 def main_menu_kb():
     kb = InlineKeyboardBuilder()
     kb.button(text="☕ Меню напитков", callback_data="categories")
-    kb.button(text="📚 Сроки хранения", callback_data="storage")
     kb.button(text="🔍 Поиск", callback_data="search_help")
     kb.button(text="⭐ Избранное", callback_data="favorites")
     kb.adjust(1)
