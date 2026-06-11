@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "one_price_coffee.db"
-SEED_PATH = BASE_DIR / "data" / "seed.json"
+SEED_PATH = BASE_DIR / "seed.json"
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
